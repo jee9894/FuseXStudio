@@ -1,0 +1,22 @@
+<App>
+	
+
+	<JavaScript File="LotteryNumber.js" />
+
+	<StackPanel Alignment="Center" Width="50%" Height="50%">
+
+		<Grid RowCount="1" ColumnCount="6">
+			<Text Value="{text1}" Alignment="Center" />
+			<Text Value="{text2}" Alignment="Center" />
+			<Text Value="{text3}" Alignment="Center" />
+			<Text Value="{text4}" Alignment="Center" />
+			<Text Value="{text5}" Alignment="Center" />
+			<Text Value="{text6}" Alignment="Center" />
+		</Grid>
+		<Button Text="Shuffle" Clicked="{shuffle}" />
+		<Button Text="Pick" Clicked="{pick}" />
+
+	</StackPanel>
+ 
+	
+</App>
