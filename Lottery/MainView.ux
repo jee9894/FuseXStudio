@@ -1,22 +1,128 @@
 <App>
-	
-
 	<JavaScript File="LotteryNumber.js" />
+	<Font File="assets/myFont.ttf" ux:Global="myFont" />
+	<PageControl Alignment="Default">
+		
+		<Panel>
+			<Text Color="#FEFDFD" Alignment="TopCenter" FontSize="40" Y="20" Value="인생역전" Font="myFont" />
+			<Text Value="옆으로 밀어서 시작하기" Alignment="BottomLeft" Color="#FFF" FontSize="25" Y="-10%" X="5%" Font="myFont" />
+			<Rectangle Opacity="0.438">
+				<LinearGradient>
+					<GradientStop Offset="0" Color="#282B61" />
+					<GradientStop Offset="1" Color="#6DC0D2" />
+				</LinearGradient>
+			</Rectangle>
+			
+			<Image File="assets/good.jpg" Opacity="0.512" StretchMode="Uniform" Alignment="BottomRight" X="-10%" Y="-30%" />
+			<Image File="assets/bingo.jpg" StretchMode="Fill" />
+		</Panel>
+		<DockPanel>
+			<StackPanel Alignment="Center" Width="95%" Height="80%" ItemSpacing="15">
+				<!-- <Text Value="{clickPlease}" FontSize="30" Color="#FFFFFF" ux:Name="clickPlease" Alignment="Center" /> -->
+				<Grid RowCount="1" ColumnCount="6" Width="100%" Height="100" ux:Name="numberGrid">
+					<Circle Color="#F5ED04" Alignment="Center" Width="95%" Height="95%" ux:Name="circle1">
+						<Text Value="{text1}" Alignment="Center" ux:Name="text1" Font="myFont" Visibility="Hidden" />
+						<Shadow />
+					</Circle>
+					<Circle Color="#F5ED04" Alignment="Center" Width="95%" Height="95%" ux:Name="circle2">
+						<Text Value="{text2}" Alignment="Center" ux:Name="text2" Font="myFont" Visibility="Hidden" />
+						<Shadow />
+					</Circle>
+					<Circle Color="#F5ED04" Alignment="Center" Width="95%" Height="95%" ux:Name="circle3">
+						<Text Value="{text3}" Alignment="Center" ux:Name="text3" Font="myFont" Visibility="Hidden" />
+						<Shadow />
+					</Circle>
+					<Circle Color="#F5ED04" Alignment="Center" Width="95%" Height="95%" ux:Name="circle4">
+						<Text Value="{text4}" Alignment="Center" ux:Name="text4" Font="myFont" Visibility="Hidden" />
+						<Shadow />
+					</Circle>
+					<Circle Color="#F5ED04" Alignment="Center" Width="95%" Height="95%" ux:Name="circle5">
+						<Text Value="{text5}" Alignment="Center" ux:Name="text5" Font="myFont" Visibility="Hidden" />
+						<Shadow />
+					</Circle>
+					<Circle Color="#F5ED04" Alignment="Center" Width="95%" Height="95%" ux:Name="circle6">
+						<Text Value="{text6}" Alignment="Center" ux:Name="text6" Font="myFont" Visibility="Hidden" />
+						<Shadow />
+					</Circle>
+					
+				</Grid>
+				<Rectangle Color="#64F4E8" Width="30%" CornerRadius="10" Height="40">
+					<Button Text="번호 섞기" Clicked="{shuffle}" />
+					<Stroke Width="1" Color="#010101" Alignment="Outside" />
+				</Rectangle>
+				<Rectangle Color="#F3B263" Width="30%" CornerRadius="10" Height="40">
+					<Button Text="번호 뽑기">
+						<Clicked>
+							<Callback Handler="{pick}" />
+							<Set Target="text1.Visibility" Value="Visible" Delay="0.25" />
+							<Set Target="text2.Visibility" Value="Visible" Delay="0.5" />
+							<Set Target="text3.Visibility" Value="Visible" Delay="0.75" />
+							<Set Target="text4.Visibility" Value="Visible" Delay="1" />
+							<Set Target="text5.Visibility" Value="Visible" Delay="1.25" />
+							<Set Target="text6.Visibility" Value="Visible" Delay="1.5" />
+							<Set Target="resultText.Visibility" Value="Visible" Delay="2" />
+						</Clicked>
+					</Button>
+					<Stroke Width="1" Color="#010101" Alignment="Outside" />
+				</Rectangle>
+				<Rectangle Color="#6AF363" Width="30%" CornerRadius="10" Height="40">
+					<Button Text="번호 삭제">
+						<Clicked>
+							<!-- <Callback Handler="{remove}" /> -->
+							<Set Target="text1.Visibility" Value="Hidden" />
+							<Set Target="text2.Visibility" Value="Hidden" />
+							<Set Target="text3.Visibility" Value="Hidden" />
+							<Set Target="text4.Visibility" Value="Hidden" />
+							<Set Target="text5.Visibility" Value="Hidden" />
+							<Set Target="text6.Visibility" Value="Hidden" />
+							<Set Target="resultText.Visibility" Value="Hidden" />
+						</Clicked>
+					</Button>
+					<Stroke Width="1" Color="#010101" Alignment="Outside" />
+				</Rectangle>
 
-	<StackPanel Alignment="Center" Width="50%" Height="50%">
+			</StackPanel>
+			<Image File="assets/lotto2.jpg" StretchMode="UniformToFill" Opacity="0.549" />
+			<Text Value="옆으로 밀어서 결과보기" Dock="Fill" Alignment="BottomCenter" Margin="0, 0, 0, 0" FontSize="20" Visibility="Hidden" ux:Name="resultText" Font="myFont" Y="-10%" />
+		</DockPanel>
 
-		<Grid RowCount="1" ColumnCount="6">
-			<Text Value="{text1}" Alignment="Center" />
-			<Text Value="{text2}" Alignment="Center" />
-			<Text Value="{text3}" Alignment="Center" />
-			<Text Value="{text4}" Alignment="Center" />
-			<Text Value="{text5}" Alignment="Center" />
-			<Text Value="{text6}" Alignment="Center" />
-		</Grid>
-		<Button Text="Shuffle" Clicked="{shuffle}" />
-		<Button Text="Pick" Clicked="{pick}" />
+		<Panel>
+			<Rectangle Opacity="0.475">
+				<LinearGradient>
+					<GradientStop Offset="0" Color="#ADDDAB" />
+					<GradientStop Offset="1" Color="#4B4B29" />
+				</LinearGradient>
+			</Rectangle>
+			<StackPanel Alignment="Default" ItemSpacing="20" Margin="0, 100, 0, 0">
+				<Text Value="당신이 뽑은 숫자는" Alignment="Center" FontSize="20" Font="myFont" />
+				<Text Value="{text1}  {text2}  {text3}  {text4}  {text5}  {text6}" Alignment="Center" FontSize="20" Font="myFont" />
+				<Text Value="입니다" Alignment="Center" FontSize="20" Font="myFont" />
+				<Text Value="행운을 빕니다" Alignment="Center" FontSize="20" Font="myFont" />
+				<Image File="assets/clover.jpg" />
+				<Text Value="옆으로 밀어서 회차별 당청번호 보기" Alignment="Center" FontSize="20" Font="myFont" Margin="0, 20, 0, 0" />
+			</StackPanel>
+		</Panel>
+		
 
-	</StackPanel>
- 
-	
+
+		<DockPanel>
+			<Rectangle Dock="Top" Alignment="Center" Color="#B7F98B" Width="100%">
+				<Text Value="웹사이트에서 로또 회차별 당첨번호 보기" Alignment="Center" Font="myFont" />
+			</Rectangle>
+			<Rectangle Width="100" Height="50" Color="#664EB5" Dock="Top" Alignment="CenterLeft" CornerRadius="10" Margin="0, 0, 0, 0">
+				<WhileCanGoBack NavigationContext="myWebView">
+					<Clicked>
+						<GoBack TargetNode="myWebView" />
+					</Clicked>
+				</WhileCanGoBack>
+				<Text Value="뒤로가기" Alignment="Center" TextColor="#FEFEFE" Font="myFont" />
+			</Rectangle>
+			
+			<NativeViewHost>
+				<WebView ux:Name="myWebView" Url="https://dhlottery.co.kr/gameResult.do?method=byWin" />
+			</NativeViewHost>
+		</DockPanel>
+
+	</PageControl>
+
 </App>
